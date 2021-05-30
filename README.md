@@ -8,7 +8,7 @@ TypeScript https://www.typescriptlang.org/ and Node.js https://nodejs.org/ are i
 1. When you run the project the first time, go to the project directory and install dependencies: ```npm install```
 2. The file ```src/config.json``` provides default settings for the project. You can customize it if you want it.
 3. To compile the project, run:  ```build```. 
-4. Run it: ```node dist/main.js```
+4. Run it: ```node dist/app.js```
 5. If you want to compile and run it in one step, just type: ```npm run start```
 
 

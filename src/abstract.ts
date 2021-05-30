@@ -54,17 +54,76 @@ export const PointDefault: Point = {
 // fields: start and end point (type of point is previously defined Point)
 
 export interface Line {
-    p1:Point,
-    p2:Point 
+    p1: Point,
+    p2: Point
 }
 
 export class AbstractLine implements Line {
     p1: Point;
     p2: Point;
     el: object;
-    constructor (p1: Point = PointDefault, p2: Point = PointDefault) {
+    constructor(p1: Point = PointDefault, p2: Point = PointDefault) {
         this.p1 = p1;
         this.p2 = p2;
-        this.el = {"p1": this.p1, "p2": this.p2};
+        this.el = { "p1": this.p1, "p2": this.p2 };
+    }
+}
+
+// Rectangle
+// Abstract rectangle definition.
+export interface Rectangle {
+    insert: Point,
+    width: number,
+    height: number
+}
+
+export class AbstractRectangle implements Rectangle {
+    insert: Point;
+    width: number;
+    height: number;
+    //  'start' indicates the location of insertion point
+    // 0 = top left (default) 1 = top right, 2 = buttom right, 3 = buttom left, 4 = center
+    start?: number;
+    el:object;
+    r: number; //maximum value of a radius within the rectangle, depends on width and height
+    constructor(insert: Point = PointDefault, width: number = 100, height: number = 100, start: number = 0) {
+        this.insert = insert;
+        this.height = height;
+        this.width = width;
+        this.start = start;
+        this.el = this.get_rectangle_points(insert,width,height);
+        this.r = width >= height ? (height/2) : (width/2);
+    }
+    private get_rectangle_points(p0:Point,w:number,h:number) {
+        
+   // clock wise direction
+    // p0 = top left (default)
+
+     // mid top
+    let p1 = new AbstractPoint((p0.x+(w/2)),p0.y).el; 
+
+    // top right
+    let p2 = new AbstractPoint((p0.x+w),p0.y).el; 
+
+    // mid right
+    let p3 = new AbstractPoint((p0.x+w),(p0.y+(h/2))).el; 
+    
+    // buttom right
+    let p4 = new AbstractPoint((p0.x+w),(p0.y+h)).el; 
+    
+    // mid buttom
+    let p5 = new AbstractPoint((p0.x+(w/2)),(p0.y+h)).el; 
+    
+    // buttom left
+    let p6 = new AbstractPoint(p0.x,(p0.y+h)).el; 
+    
+    // mid left
+    let p7 = new AbstractPoint(p0.x,(p0.y+(h/2))).el; 
+    
+    // center
+    let p8 = new AbstractPoint((p0.x+(w/2)),(p0.y+(h/2))).el; 
+    
+    return {"tl":p0,"mt":p1,"tr":p2,"mr":p3,"br":p4,"mb":p5,"bl":p6,"ml":p7,"cp":p8};
+
     }
 }

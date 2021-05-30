@@ -1,6 +1,6 @@
 // Parametric SVG
 import * as fs from 'fs';
-import { AbstractPoint, AbstractLine } from './abstract';
+import { AbstractPoint, AbstractLine, AbstractRectangle } from './abstract';
 import { Element } from './markup';
 
 // Get general configuration settings
@@ -25,6 +25,10 @@ function main() {
   // Abstract geometries: Line
   let line = new AbstractLine().el;
   console.log(line);
+
+  // Abstract geometries: Rectangle
+  let rect = new AbstractRectangle();
+  console.log(rect.r);
 
 }
 
