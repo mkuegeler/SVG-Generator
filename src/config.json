@@ -1,0 +1,23 @@
+{
+    "main": {
+        "Description": "SVG Generator",
+        "Version": "1.0",
+        "DataFolder": "./data",
+        "SourceFile": "svg",
+        "ResultFile": "result"
+    },
+    "elements": {
+        "root": {
+            "element": "svg",
+            "attributes": []
+        },
+        "children": [
+            {
+                "element": "rect", "attributes": []
+            },
+            {
+                "element": "circle", "attributes": []
+            }
+        ]
+    }
+}

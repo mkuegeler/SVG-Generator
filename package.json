@@ -1,0 +1,27 @@
+{
+  "name": "svg-generator",
+  "version": "1.0.0",
+  "description": "SVG Generator",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkuegeler/SVG-Generator.git"
+  },
+  "keywords": [
+    "SVG",
+    "TypeScript"
+  ],
+  "author": "mkuegeler",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mkuegeler/SVG-Generator/issues"
+  },
+  "homepage": "https://github.com/mkuegeler/SVG-Generator#readme",
+  "dependencies": {
+    "@types/node": "^15.6.0"
+  }
+}
