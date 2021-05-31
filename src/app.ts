@@ -35,14 +35,14 @@ function main() {
   inJson["rect"].width = String(width);
   inJson["rect"].height = String(height);
 
-  inJson["circle"].rx = String(canvas.el.cp.x);
-  inJson["circle"].ry = String(canvas.el.cp.y);
+  inJson["circle"].cx = String(canvas.el.cp.x);
+  inJson["circle"].cy = String(canvas.el.cp.y);
   inJson["circle"].r = String(canvas.r);
 
   inJson["ellipse"].cx = String(canvas.el.cp.x);
   inJson["ellipse"].cy = String(canvas.el.cp.y);
-  inJson["ellipse"].rx = String(canvas.width);
-  inJson["ellipse"].ry = String(canvas.height);
+  inJson["ellipse"].rx = String((canvas.width/2));
+  inJson["ellipse"].ry = String((canvas.height/2));
 
   writeJson(inJson,ResultJson);
 
