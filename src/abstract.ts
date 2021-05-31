@@ -34,12 +34,12 @@ export class AbstractPoint implements Point {
     x: number;
     y: number;
     z: number;
-    el: object;
+    el: any;
     constructor(x: number = 0, y: number = 0, z: number = 0) {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.el = { "x": this.x, "y": this.y, "z": this.z };
+        this.el = { x: this.x, y: this.y, z: this.z };
     }
 }
 
@@ -61,11 +61,11 @@ export interface Line {
 export class AbstractLine implements Line {
     p1: Point;
     p2: Point;
-    el: object;
+    el: any;
     constructor(p1: Point = PointDefault, p2: Point = PointDefault) {
         this.p1 = p1;
         this.p2 = p2;
-        this.el = { "p1": this.p1, "p2": this.p2 };
+        this.el = { p1: this.p1, p2: this.p2 };
     }
 }
 
@@ -84,20 +84,42 @@ export class AbstractRectangle implements Rectangle {
     //  'start' indicates the location of insertion point
     // 0 = top left (default) 1 = top right, 2 = buttom right, 3 = buttom left, 4 = center
     start?: number;
-    el:object;
+    el:any;
     r: number; //maximum value of a radius within the rectangle, depends on width and height
     constructor(insert: Point = PointDefault, width: number = 100, height: number = 100, start: number = 0) {
-        this.insert = insert;
+        
         this.height = height;
         this.width = width;
         this.start = start;
-        this.el = this.get_rectangle_points(insert,width,height);
         this.r = width >= height ? (height/2) : (width/2);
+
+        switch (start) {
+            case 1:
+                this.insert = new AbstractPoint((insert.x-width),insert.y); 
+                break;
+            case 2:
+                this.insert = new AbstractPoint((insert.x-width),(insert.y-height)); 
+                break;
+            case 3:
+                this.insert = new AbstractPoint(insert.x, (insert.y+height)); 
+                break;
+            case 4:
+                this.insert = new AbstractPoint((insert.x-(width/2) ) ,(insert.y-(height/2))); 
+                break;   
+            default:
+                this.insert = insert;
+                break;
+        }
+
+        this.el = this.get_rectangle_points(this.insert,this.width,this.height);
+        // this.el = {"id": "test"};
+        
     }
     private get_rectangle_points(p0:Point,w:number,h:number) {
         
    // clock wise direction
-    // p0 = top left (default)
+    // pz = top left (default)
+    let pz = new AbstractPoint(p0.x,p0.y).el; 
 
      // mid top
     let p1 = new AbstractPoint((p0.x+(w/2)),p0.y).el; 
@@ -123,7 +145,7 @@ export class AbstractRectangle implements Rectangle {
     // center
     let p8 = new AbstractPoint((p0.x+(w/2)),(p0.y+(h/2))).el; 
     
-    return {"tl":p0,"mt":p1,"tr":p2,"mr":p3,"br":p4,"mb":p5,"bl":p6,"ml":p7,"cp":p8};
+    return {tl:pz,mt:p1,tr:p2,mr:p3,br:p4,mb:p5,bl:p6,ml:p7,cp:p8};
 
     }
 }

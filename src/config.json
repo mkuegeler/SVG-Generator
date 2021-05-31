@@ -8,16 +8,13 @@
     },
     "elements": {
         "root": {
-            "element": "svg",
-            "attributes": []
-        },
-        "children": [
-            {
-                "element": "rect", "attributes": []
-            },
-            {
-                "element": "circle", "attributes": []
+            "name": "svg",
+            "attributes": {
+                "x": 0,
+                "y": 0,
+                "width":1282,
+                "height": 721
             }
-        ]
+        }
     }
 }
